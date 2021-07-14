@@ -453,6 +453,11 @@
       <zplane rmin="506.1201" rmax="510.8826" z="36"/>
     </polycone>
 
+	<!-- airWindow Solid -->
+    <tube name = "airWindow_solid"
+	  rmin="0" rmax="450"
+	  z="2"    lunit="mm"
+	  deltaphi="360" startphi="0" aunit="deg"/>
 
 </solids>
 
@@ -977,6 +982,14 @@
     <auxiliary auxtype="Color" auxvalue="Blue"/>
   </volume>
 
+  <!--airWindow Volume-->
+  <volume name="airWindow_logic">
+    <materialref ref="G4_Al"/>
+    <solidref ref="airWindow_solid"/>
+    <auxiliary auxtype="Color" auxvalue="Yellow"/>
+    <auxiliary auxtype="SensDet" auxvalue="planeDet" />
+    <auxiliary auxtype="DetNo" auxvalue="123" />
+  </volume>
 
     <volume name="logicDownstream">
       <materialref ref="VacuumColl"/>
@@ -1116,6 +1129,12 @@
     <physvol name="DSpipe2_DSpipe2_1">
       <volumeref ref="logic_DSpipe2_1"/>
       <position name="DSpipe1_DSpipe2_1_pos" x="0" y="0" z="boxDSMother_length/2-36.0"/>
+    </physvol>
+    
+    <!--airWindow-->
+    <physvol name="airWindow">
+      <volumeref ref="airWindow_logic"/>
+      <position name="airWindow_pos" z="boxDSMother_length/2-400"/>
     </physvol>
 
     <auxiliary auxtype="Alpha" auxvalue="0.1"/>
